@@ -1,2 +1,9 @@
 
 src/.DS_Store
+.settings/org.eclipse.core.resources.prefs
+.classpath
+.DS_Store
+.settings/org.eclipse.jdt.core.prefs
+.project
+.settings/org.eclipse.m2e.core.prefs
+/target/
