@@ -102,6 +102,9 @@ public class OpenviduConfig {
 //	@Autowired
 //	private BuildProperties buildProperties;
 
+	@Value("${vmeeting.isproduct}")
+	protected String isProduct;
+	
 	@Value("${kms.uris}")
 	protected String kmsUris;
 

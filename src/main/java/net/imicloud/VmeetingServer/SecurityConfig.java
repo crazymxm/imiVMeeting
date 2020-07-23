@@ -37,32 +37,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		System.out.println(" --- SecurityConfig ----");
+		
+		
+		
 		// Security for API REST
 		ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry conf = http.cors().and()
 				.csrf().disable().authorizeRequests()
-				// /api/sessions
-				.antMatchers(HttpMethod.GET, "/api/sessions").authenticated()
-				.antMatchers(HttpMethod.GET, "/api/sessions/**").authenticated()
-				.antMatchers(HttpMethod.POST, "/api/sessions").authenticated()
-				.antMatchers(HttpMethod.POST, "/api/sessions/**").authenticated()
-				// /api/tokens
-				.antMatchers(HttpMethod.POST, "/api/tokens").authenticated()
-				// /api/recordings
-				.antMatchers(HttpMethod.GET, "/api/recordings").authenticated()
-				.antMatchers(HttpMethod.GET, "/api/recordings/**").authenticated()
-				.antMatchers(HttpMethod.POST, "/api/recordings/start").authenticated()
-				.antMatchers(HttpMethod.POST, "/api/recordings/stop").authenticated()
-				.antMatchers(HttpMethod.DELETE, "/api/recordings/**").authenticated()
-				// /config
 				.antMatchers(HttpMethod.GET, "/config/openvidu-publicurl").permitAll()
-				.antMatchers(HttpMethod.GET, "/config/**").authenticated()
-				// /cdr
-				.antMatchers(HttpMethod.GET, "/cdr/**").authenticated()
-				// Dashboard
-				.antMatchers("/").authenticated();
-
-		// Security for layouts
-		conf.antMatchers("/layouts/**").authenticated();
+				.antMatchers(HttpMethod.GET, "/config/**").hasRole("ADMIN")
+				.anyRequest().authenticated();
 
 		// Security for recorded videos
 		if (openviduConf.getOpenViduRecordingPublicAccess()) {
@@ -76,7 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		//prefix {noop} to password in order for the DelegatingPasswordEncoder use the NoOpPasswordEncoder to validate these passwords
 		auth.inMemoryAuthentication().withUser("OPENVIDUAPP").password("{noop}" + openviduConf.getOpenViduSecret())
+				.roles("USER");
+		auth.inMemoryAuthentication().withUser("VMEETINGADMIN").password("{noop}" + openviduConf.getOpenViduSecret() + "_ADM") //todo set adminpassword to config
 				.roles("ADMIN");
 	}
 
