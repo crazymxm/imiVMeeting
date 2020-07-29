@@ -140,6 +140,13 @@ public class SessionRestController {
 					builder = builder.mediaMode(MediaMode.ROUTED);
 				}
 				if (customSessionId != null && !customSessionId.isEmpty()) {
+					
+					if (openviduConfig.isProduct()) {
+						return this.generateErrorResponse(
+								"Parameter \"customSessionId\" is not support in product mode",
+								"/api/sessions", HttpStatus.BAD_REQUEST);
+					}
+					
 					if (!sessionManager.formatChecker.isValidCustomSessionId(customSessionId)) {
 						return this.generateErrorResponse(
 								"Parameter \"customSessionId\" is wrong. Must be an alphanumeric string",

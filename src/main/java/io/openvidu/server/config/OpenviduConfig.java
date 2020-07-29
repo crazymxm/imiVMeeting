@@ -103,8 +103,9 @@ public class OpenviduConfig {
 //	private BuildProperties buildProperties;
 
 	@Value("${vmeeting.isproduct}")
-	protected String isProduct;
+	protected boolean isProduct;
 	
+
 	@Value("${kms.uris}")
 	protected String kmsUris;
 
@@ -331,6 +332,10 @@ public class OpenviduConfig {
 		return webhookEventsList;
 	}
 	
+	public boolean isProduct() {
+		return isProduct;
+	}
+
 
 	public OpenViduRole[] getRolesFromRecordingNotification() {
 		OpenViduRole[] roles;
