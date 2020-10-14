@@ -11,7 +11,7 @@ VMeeting-server
   
   
 - :beer: **已完成**:    
-    删除docker方式。计划以后用docker外的方法(FFmpeg)进行混流录制。  
+    删除docker方式（目前docker只用于混流录制，意义不大。计划以后用docker外的方法(FFmpeg)进行混流录制。）目前采用单个流录制的方式。  
     升高springboot版本 1.X -> 2.1.3  
     解决升级springboot版本后，[x-webkit-deflate-frame] is not supported问题（只在ios上面出现）  
     修改部分接口的认证
