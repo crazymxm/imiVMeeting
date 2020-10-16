@@ -37,15 +37,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		System.out.println(" --- SecurityConfig ----");
-		
-		
-		
+
 		// Security for API REST
 		ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry conf = http.cors().and()
 				.csrf().disable().authorizeRequests()
-				.antMatchers(HttpMethod.GET, "/config/openvidu-publicurl").permitAll()
-				.antMatchers(HttpMethod.GET, "/config/**").hasRole("ADMIN")
-				.anyRequest().authenticated();
+				// /api/
+				.antMatchers("/api/**").authenticated()
+				// /config
+				.antMatchers ("/config/openvidu-publicurl").authenticated()
+				.antMatchers("/config/**").hasRole("ADMIN")
+				// /cdr
+				.antMatchers("/cdr/**").authenticated()
+				// Dashboard
+				.antMatchers("/dashboard/**").authenticated()
+				// Security for layouts
+				.antMatchers("/layouts/**").authenticated()
+				;
 
 		// Security for recorded videos
 		if (openviduConf.getOpenViduRecordingPublicAccess()) {
