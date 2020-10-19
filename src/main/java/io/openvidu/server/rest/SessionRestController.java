@@ -143,7 +143,7 @@ public class SessionRestController {
 					
 					if (openviduConfig.isProduct()) {
 						return this.generateErrorResponse(
-								"Parameter \"customSessionId\" is not support in product mode",
+								"Parameter \"customSessionId\" is not supported in product mode",
 								"/api/sessions", HttpStatus.BAD_REQUEST);
 					}
 					
@@ -173,6 +173,11 @@ public class SessionRestController {
 			}
 			sessionId = customSessionId;
 		} else {
+			
+			if (openviduConfig.isProduct()) {
+				//todo check the key
+			}
+			
 			sessionId = IdentifierPrefixes.SESSION_ID + RandomStringUtils.randomAlphabetic(1).toUpperCase()
 					+ RandomStringUtils.randomAlphanumeric(9);
 		}

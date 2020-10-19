@@ -29,6 +29,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.openvidu.java.client.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.kurento.client.GenericMediaElement;
 import org.kurento.client.IceCandidate;
@@ -46,11 +47,6 @@ import com.google.gson.JsonObject;
 import io.openvidu.client.OpenViduException;
 import io.openvidu.client.OpenViduException.Code;
 import io.openvidu.client.internal.ProtocolElements;
-import io.openvidu.java.client.MediaMode;
-import io.openvidu.java.client.RecordingLayout;
-import io.openvidu.java.client.RecordingMode;
-import io.openvidu.java.client.RecordingProperties;
-import io.openvidu.java.client.SessionProperties;
 import io.openvidu.server.core.EndReason;
 import io.openvidu.server.core.FinalUser;
 import io.openvidu.server.core.IdentifierPrefixes;
@@ -316,6 +312,15 @@ public class KurentoSessionManager extends SessionManager {
 					kSession.getSessionId(), mediaOptions, sdpAnswer, participants, transactionId, e);
 		}
 
+		log.info(
+				"recorder info :  isRecordingModuleEnabled={}  kSession.getSessionProperties().mediaMode()={} "
+						+ " kSession.getActivePublishers() ={} kSession.getSessionProperties().recordingMode()={}",
+				this.openviduConfig.isRecordingModuleEnabled(),
+				kSession.getSessionProperties().mediaMode(),
+				kSession.getActivePublishers(),
+				kSession.getSessionProperties().recordingMode()
+		);
+
 		if (this.openviduConfig.isRecordingModuleEnabled()
 				&& MediaMode.ROUTED.equals(kSession.getSessionProperties().mediaMode())
 				&& kSession.getActivePublishers() == 0) {
@@ -326,7 +331,9 @@ public class KurentoSessionManager extends SessionManager {
 				new Thread(() -> {
 					recordingManager.startRecording(kSession,
 							new RecordingProperties.Builder().name("")
-									.outputMode(kSession.getSessionProperties().defaultOutputMode())
+									//.outputMode(kSession.getSessionProperties().defaultOutputMode())
+									//force Recording.OutputMode to single
+									.outputMode(Recording.OutputMode.INDIVIDUAL)
 									.recordingLayout(kSession.getSessionProperties().defaultRecordingLayout())
 									.customLayout(kSession.getSessionProperties().defaultCustomLayout()).build());
 				}).start();

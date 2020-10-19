@@ -499,6 +499,7 @@ public class OpenviduConfig {
 			case "kms.uris":
 				String kmsUris;
 				try {
+					//TODO 这里做负载均衡
 					// First check if castable to a List
 					List<String> list = checkStringArray(parameters, parameter, admitStringified);
 					String elementString;

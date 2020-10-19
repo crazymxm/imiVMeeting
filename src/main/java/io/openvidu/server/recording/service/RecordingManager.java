@@ -163,8 +163,8 @@ public class RecordingManager {
 		this.singleStreamRecordingService = new SingleStreamRecordingService(this, recordingDownloader, openviduConfig,
 				cdr, quarantineKiller);
 
-		log.info("Recording module required: Downloading openvidu/openvidu-recording:"
-				+ openviduConfig.getOpenViduRecordingVersion() + " Docker image (350MB aprox)");
+//		log.info("Recording module required: Downloading openvidu/openvidu-recording:"
+//				+ openviduConfig.getOpenViduRecordingVersion() + " Docker image (350MB aprox)");
 
 		this.checkRecordingRequirements(this.openviduConfig.getOpenViduRecordingPath(),
 				this.openviduConfig.getOpenviduRecordingCustomLayout());
@@ -246,6 +246,7 @@ public class RecordingManager {
 		} catch (OpenViduException e) {
 			throw e;
 		}
+
 		this.updateRecordingManagerCollections(session, recording);
 
 		this.cdr.recordRecordingStarted(recording);
@@ -743,6 +744,7 @@ public class RecordingManager {
 	 * collections and sends RPC response to clients
 	 */
 	private void updateRecordingManagerCollections(Session session, Recording recording) {
+		log.info("session.getSessionId()={},recording={}",session.getSessionId(), recording);
 		this.sessionHandler.setRecordingStarted(session.getSessionId(), recording);
 		this.sessionsRecordings.put(session.getSessionId(), recording);
 		this.startingRecordings.remove(recording.getId());
