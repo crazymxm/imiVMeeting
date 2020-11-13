@@ -92,7 +92,8 @@ public class SessionRestController {
 
 		SessionProperties.Builder builder = new SessionProperties.Builder();
 		String customSessionId = null;
-
+		String role = "";
+		
 		if (params != null) {
 
 			String mediaModeString;
@@ -100,6 +101,7 @@ public class SessionRestController {
 			String defaultOutputModeString;
 			String defaultRecordingLayoutString;
 			String defaultCustomLayout;
+			
 			try {
 				mediaModeString = (String) params.get("mediaMode");
 				recordingModeString = (String) params.get("recordingMode");
@@ -107,6 +109,8 @@ public class SessionRestController {
 				defaultRecordingLayoutString = (String) params.get("defaultRecordingLayout");
 				defaultCustomLayout = (String) params.get("defaultCustomLayout");
 				customSessionId = (String) params.get("customSessionId");
+				role = (String) params.get("role");
+				
 			} catch (ClassCastException e) {
 				return this.generateErrorResponse("Type error in some parameter", "/api/sessions",
 						HttpStatus.BAD_REQUEST);
@@ -169,7 +173,10 @@ public class SessionRestController {
 		String sessionId;
 		if (customSessionId != null && !customSessionId.isEmpty()) {
 			if (sessionManager.getSessionWithNotActive(customSessionId) != null) {
-				return new ResponseEntity<>(HttpStatus.CONFLICT);
+				if ( "MODERATOR".equals(role)) return new ResponseEntity<>(HttpStatus.CONFLICT);
+			} else {
+				//session not exists ,and  user is not a MODERATOR . 
+				if ( !"MODERATOR".equals(role))  return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 			}
 			sessionId = customSessionId;
 		} else {
