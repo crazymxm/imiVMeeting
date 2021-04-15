@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import io.openvidu.server.config.OpenviduConfig;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 @Configuration
 public class RecordingsHttpHandler implements WebMvcConfigurer {

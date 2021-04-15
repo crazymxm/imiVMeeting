@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.JsonArray;
 
-import io.openvidu.server.config.OpenviduConfig;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 /**
  *

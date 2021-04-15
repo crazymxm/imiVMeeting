@@ -24,9 +24,9 @@ import org.slf4j.LoggerFactory;
 
 import io.openvidu.server.cdr.CDREvent;
 import io.openvidu.server.cdr.CDRLogger;
-import io.openvidu.server.config.OpenviduConfig;
 import io.openvidu.server.kurento.endpoint.KmsEvent;
 import io.openvidu.server.summary.SessionSummary;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 public class CDRLoggerWebhook implements CDRLogger {
 

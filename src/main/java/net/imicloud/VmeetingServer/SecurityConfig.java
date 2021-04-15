@@ -26,8 +26,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.stereotype.Component;
 
-import io.openvidu.server.config.OpenviduConfig;
-
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 

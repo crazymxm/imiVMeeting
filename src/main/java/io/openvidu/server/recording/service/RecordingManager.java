@@ -60,7 +60,6 @@ import io.openvidu.java.client.Recording.OutputMode;
 import io.openvidu.java.client.Recording.Status;
 import io.openvidu.java.client.RecordingProperties;
 import io.openvidu.server.cdr.CallDetailRecord;
-import io.openvidu.server.config.OpenviduConfig;
 import io.openvidu.server.core.EndReason;
 import io.openvidu.server.core.Participant;
 import io.openvidu.server.core.Session;
@@ -74,6 +73,7 @@ import io.openvidu.server.utils.CustomFileManager;
 //import io.openvidu.server.utils.DockerManager;
 import io.openvidu.server.utils.JsonUtils;
 import io.openvidu.server.utils.QuarantineKiller;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 public class RecordingManager {
 

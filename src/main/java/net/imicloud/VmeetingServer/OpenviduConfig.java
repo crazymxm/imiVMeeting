@@ -15,7 +15,7 @@
  *
  */
 
-package io.openvidu.server.config;
+package net.imicloud.VmeetingServer;
 
 import java.io.File;
 import java.io.IOException;

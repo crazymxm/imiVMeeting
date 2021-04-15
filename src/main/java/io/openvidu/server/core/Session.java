@@ -39,9 +39,9 @@ import io.openvidu.client.internal.ProtocolElements;
 import io.openvidu.java.client.Recording;
 import io.openvidu.java.client.RecordingLayout;
 import io.openvidu.java.client.SessionProperties;
-import io.openvidu.server.config.OpenviduConfig;
 import io.openvidu.server.kurento.core.KurentoParticipant;
 import io.openvidu.server.recording.service.RecordingManager;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 public class Session implements SessionInterface {
 

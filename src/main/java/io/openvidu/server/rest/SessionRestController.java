@@ -1,6 +1,7 @@
 /*
  * (C) Copyright 2017-2020 OpenVidu (https://openvidu.io)
- *
+ * (C) Modifications Copyright 2020 imicloud/MaXiaoMing (http://imicloud.net)
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -54,7 +55,6 @@ import io.openvidu.java.client.RecordingLayout;
 import io.openvidu.java.client.RecordingMode;
 import io.openvidu.java.client.RecordingProperties;
 import io.openvidu.java.client.SessionProperties;
-import io.openvidu.server.config.OpenviduConfig;
 import io.openvidu.server.core.EndReason;
 import io.openvidu.server.core.IdentifierPrefixes;
 import io.openvidu.server.core.Participant;
@@ -64,6 +64,7 @@ import io.openvidu.server.kurento.core.KurentoMediaOptions;
 import io.openvidu.server.kurento.core.KurentoTokenOptions;
 import io.openvidu.server.recording.Recording;
 import io.openvidu.server.recording.service.RecordingManager;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 /**
  *

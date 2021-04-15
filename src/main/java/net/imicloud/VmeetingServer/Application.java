@@ -48,8 +48,6 @@ import io.openvidu.server.cdr.CDRLogger;
 import io.openvidu.server.cdr.CDRLoggerFile;
 import io.openvidu.server.cdr.CallDetailRecord;
 import io.openvidu.server.config.HttpHandshakeInterceptor;
-import io.openvidu.server.config.OpenviduConfig;
-
 import io.openvidu.server.core.SessionEventsHandler;
 import io.openvidu.server.core.SessionManager;
 import io.openvidu.server.core.TokenGenerator;
@@ -90,7 +88,7 @@ public class Application implements JsonRpcConfigurer {
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
-	public static final String WS_PATH = "/openvidu";
+	public static final String WS_PATH = "/imivmeeting";
 //	public static String publicurlType;
 //	public static String wsUrl;
 //	public static String httpUrl;
@@ -107,6 +105,7 @@ public class Application implements JsonRpcConfigurer {
 		}
 		String firstKmsWsUri = openviduConfig.getKmsUris().get(0);
 		log.info("OpenVidu Server using one KMS: {}", firstKmsWsUri);
+		//这里只使用了单一Kms服务
 		return new FixedOneKmsManager();
 	}
 

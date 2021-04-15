@@ -22,11 +22,10 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import io.openvidu.java.client.OpenViduRole;
-
-import io.openvidu.server.config.OpenviduConfig;
 import io.openvidu.server.coturn.CoturnCredentialsService;
 import io.openvidu.server.coturn.TurnCredentials;
 import io.openvidu.server.kurento.core.KurentoTokenOptions;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 public class TokenGeneratorDefault implements TokenGenerator {
 

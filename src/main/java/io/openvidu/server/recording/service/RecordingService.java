@@ -27,7 +27,6 @@ import io.openvidu.client.OpenViduException.Code;
 import io.openvidu.java.client.RecordingLayout;
 import io.openvidu.java.client.RecordingProperties;
 import io.openvidu.server.cdr.CallDetailRecord;
-import io.openvidu.server.config.OpenviduConfig;
 import io.openvidu.server.core.EndReason;
 import io.openvidu.server.core.Session;
 import io.openvidu.server.recording.Recording;
@@ -35,6 +34,7 @@ import io.openvidu.server.recording.RecordingDownloader;
 import io.openvidu.server.utils.CommandExecutor;
 import io.openvidu.server.utils.CustomFileManager;
 import io.openvidu.server.utils.QuarantineKiller;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 public abstract class RecordingService {
 

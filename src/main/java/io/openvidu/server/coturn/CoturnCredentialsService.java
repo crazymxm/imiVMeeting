@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import io.openvidu.server.config.OpenviduConfig;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 public abstract class CoturnCredentialsService {
 

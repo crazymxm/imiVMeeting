@@ -1,6 +1,6 @@
 /*
  * (C) Copyright 2017-2020 OpenVidu (https://openvidu.io)
- *
+ * (C) Modifications Copyright 2020 imicloud/MaXiaoMing (http://imicloud.net)
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -113,7 +113,7 @@ public class CustomFileManager {
 	private void writeAndCloseOnOutputStreamWriter(FileOutputStream fos, String text) throws IOException {
 		OutputStreamWriter osw = null;
 		try {
-			osw = new OutputStreamWriter(fos);
+			osw = new OutputStreamWriter(fos,"utf-8");
 			osw.write(text);
 		} finally {
 			osw.close();

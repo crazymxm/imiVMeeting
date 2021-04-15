@@ -34,7 +34,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import io.openvidu.server.cdr.CDREventName;
-import io.openvidu.server.config.OpenviduConfig;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 /**
  *

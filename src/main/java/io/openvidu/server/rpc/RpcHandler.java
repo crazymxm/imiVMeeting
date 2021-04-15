@@ -45,7 +45,6 @@ import com.google.gson.JsonSyntaxException;
 import io.openvidu.client.OpenViduException;
 import io.openvidu.client.OpenViduException.Code;
 import io.openvidu.client.internal.ProtocolElements;
-import io.openvidu.server.config.OpenviduConfig;
 import io.openvidu.server.core.EndReason;
 import io.openvidu.server.core.IdentifierPrefixes;
 import io.openvidu.server.core.MediaOptions;
@@ -54,6 +53,7 @@ import io.openvidu.server.core.SessionManager;
 import io.openvidu.server.core.Token;
 import io.openvidu.server.utils.GeoLocation;
 import io.openvidu.server.utils.GeoLocationByIp;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 public class RpcHandler extends DefaultJsonRpcHandler<JsonObject> {
 

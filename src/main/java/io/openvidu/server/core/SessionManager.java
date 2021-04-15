@@ -45,7 +45,6 @@ import io.openvidu.client.internal.ProtocolElements;
 import io.openvidu.java.client.OpenViduRole;
 import io.openvidu.java.client.SessionProperties;
 import io.openvidu.server.cdr.CDREventRecording;
-import io.openvidu.server.config.OpenviduConfig;
 import io.openvidu.server.coturn.CoturnCredentialsService;
 import io.openvidu.server.kurento.core.KurentoTokenOptions;
 import io.openvidu.server.kurento.endpoint.EndpointType;
@@ -54,6 +53,7 @@ import io.openvidu.server.utils.FormatChecker;
 import io.openvidu.server.utils.GeoLocation;
 import io.openvidu.server.utils.GeoLocationByIp;
 import io.openvidu.server.utils.QuarantineKiller;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 public abstract class SessionManager {
 

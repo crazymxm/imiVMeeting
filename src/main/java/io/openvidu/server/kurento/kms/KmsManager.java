@@ -38,8 +38,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.gson.JsonObject;
 
-import io.openvidu.server.config.OpenviduConfig;
 import io.openvidu.server.utils.MediaNodeStatusManager;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 public abstract class KmsManager {
 

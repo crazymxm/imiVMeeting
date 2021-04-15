@@ -27,8 +27,8 @@ import org.slf4j.LoggerFactory;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import io.openvidu.server.config.OpenviduConfig;
 import io.openvidu.server.kurento.core.KurentoParticipant;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 /**
  * Subscriber aspect of the {@link MediaEndpoint}.

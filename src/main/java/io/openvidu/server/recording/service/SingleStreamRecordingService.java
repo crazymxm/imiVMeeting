@@ -1,6 +1,6 @@
 /*
  * (C) Copyright 2017-2020 OpenVidu (https://openvidu.io)
- *
+ * (C) Modifications Copyright 2020 imicloud/MaXiaoMing (http://imicloud.net)
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,7 +55,6 @@ import io.openvidu.client.OpenViduException;
 import io.openvidu.client.OpenViduException.Code;
 import io.openvidu.java.client.RecordingProperties;
 import io.openvidu.server.cdr.CallDetailRecord;
-import io.openvidu.server.config.OpenviduConfig;
 import io.openvidu.server.core.EndReason;
 import io.openvidu.server.core.Participant;
 import io.openvidu.server.core.Session;
@@ -65,6 +65,7 @@ import io.openvidu.server.recording.RecorderEndpointWrapper;
 import io.openvidu.server.recording.Recording;
 import io.openvidu.server.recording.RecordingDownloader;
 import io.openvidu.server.utils.QuarantineKiller;
+import net.imicloud.VmeetingServer.OpenviduConfig;
 
 public class SingleStreamRecordingService extends RecordingService {
 
@@ -122,7 +123,7 @@ public class SingleStreamRecordingService extends RecordingService {
 		try {
 			if (!recordingStartedCountdown.await(5, TimeUnit.SECONDS)) {
 				log.error("Error waiting for some recorder endpoint to start in session {}", session.getSessionId());
-				throw this.failStartRecording(session, recording, "Couldn't initialize some RecorderEndpoint");
+				//throw this.failStartRecording(session, recording, "Couldn't initialize some RecorderEndpoint");
 			}
 		} catch (InterruptedException e) {
 			recording.setStatus(io.openvidu.java.client.Recording.Status.failed);
@@ -424,8 +425,9 @@ public class SingleStreamRecordingService extends RecordingService {
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isFile() && files[i].getName().startsWith(INDIVIDUAL_STREAM_METADATA_FILE)) {
 				try {
-					reader = new FileReader(files[i].getAbsolutePath());
-				} catch (FileNotFoundException e) {
+					//reader = new FileReader(files[i].getAbsolutePath());
+					reader=new InputStreamReader(new FileInputStream(files[i].getAbsolutePath()),"UTF-8");
+				} catch (Exception e) {
 					log.error("Error reading file {}. Error: {}", files[i].getAbsolutePath(), e.getMessage());
 				}
 				RecorderEndpointWrapper wr = gson.fromJson(reader, RecorderEndpointWrapper.class);
@@ -453,7 +455,8 @@ public class SingleStreamRecordingService extends RecordingService {
 
 		json.add("files", jsonArrayFiles);
 		this.fileWriter.createAndWriteFile(syncFilePath, new GsonBuilder().setPrettyPrinting().create().toJson(json));
-		this.generateZipFileAndCleanFolder(folderPath, recording.getName() + ".zip");
+		
+		//this.generateZipFileAndCleanFolder(folderPath, recording.getName() + ".zip");
 
 		double duration = (double) (maxEndTime - minStartTime) / 1000;
 		duration = duration > 0 ? duration : 0;
